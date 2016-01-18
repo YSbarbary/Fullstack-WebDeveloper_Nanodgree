@@ -54,7 +54,7 @@ class University(Base):
 
     @property
     def serialize(self):
-        # Returns object data in easily serializeable format
+        # Returns object data in easily serialize-able format
         return {
             'university_name': self.university_name,
             'common_abbreviation': self.common_abbreviation,

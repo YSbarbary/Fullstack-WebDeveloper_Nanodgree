@@ -9,7 +9,7 @@ The application allows users to create, edit and browse universites in each coun
 - Description
 - Images / photos of the university
 
-##Requirements
+## Requirements
 - Vagrant (version 1.7.4)
 - VirtualBox (version 5)
 - Python (version 2.7)
@@ -19,7 +19,7 @@ The application allows users to create, edit and browse universites in each coun
 - SQLLite
 - Internet connection for OAuth2 authentication
 
-##Contents
+## Contents
 - .vagrant (folder) - containing components for running vagrant envrionment
 - pg_config.sh - script for installing components in environment
 - Vagrantfile - configuration file for vagrant

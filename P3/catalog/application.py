@@ -18,6 +18,9 @@ from oauth2client.client import flow_from_clientsecrets, FlowExchangeError
 import httplib2
 import requests
 
+from functools import wraps
+
+
 app = Flask(__name__)
 csrf = SeaSurf(app)
 
@@ -33,8 +36,17 @@ session = DBSession()
 
 countries = session.query(Country).order_by(Country.name)
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in login_session:
+            return redirect(url_for('showLogin', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+	
 @app.route('/')
 @app.route('/catalog/')
+
 def home():
     """Route for home page / default view.
 
@@ -282,6 +294,7 @@ def disconnect():
     return redirect(url_for('home'))
 
 @app.route('/catalog/country/<int:country_id>/')
+@login_required
 def catalogCountry(country_id):
     """Route for country page / country view.
 
@@ -344,12 +357,11 @@ def showThumbnail(item_id):
         filename)
 
 @app.route('/catalog/item/new/', methods=['GET', 'POST'])
+@login_required
 def addCatalogItem():
     """Route to either render the create a new item page or POST method
     for saving the new item
     """
-    if 'user_id' not in login_session:
-        return redirect('/login')
     if request.method == 'POST':
         # POST method for saving new item
         # Converts date from EN-AU to Python date
@@ -377,14 +389,13 @@ def addCatalogItem():
         return render_template('newItem.html', countries=countries)
 
 @app.route('/catalog/item/<int:item_id>/delete/', methods=['GET', 'POST'])
+@login_required
 def deleteCatalogItem(item_id):
     """Route to GET delete page or POST method
 
     Args:
         item_id: integer for id of item to delete
     """
-    if 'user_id' not in login_session:
-        return redirect('/login')
     # get item here so that code to find item only needs to be called once
     item = session.query(University).filter_by(id=item_id).one()
     if (item.user_id != login_session["user_id"]):
@@ -404,14 +415,13 @@ def deleteCatalogItem(item_id):
         return render_template('deleteItem.html', item=item)
 
 @app.route('/catalog/item/<int:item_id>/edit/', methods=['GET', 'POST'])
+@login_required
 def editCatalogItem(item_id):
     """Route to GET edit page or POST method
 
     Args:
         item_id: integer for id of item to update
     """
-    if 'user_id' not in login_session:
-        return redirect('/login')
 
     item = session.query(University).filter_by(id=item_id).one()
     if item.user_id != login_session["user_id"]:

@@ -31,6 +31,13 @@ User2 = User(
 session.add(User2)
 session.commit()
 
+User3 = User(
+    name="yasser2",
+    email="smallbarbary@gmail.com",
+    picture='#')
+session.add(User3)
+session.commit()
+
 with open('sample_data/country.csv', 'rb') as csvfile:
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
