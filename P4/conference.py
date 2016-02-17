@@ -5,7 +5,7 @@ conference.py -- Udacity conference server-side Python App Engine API;
     uses Google Cloud Endpoints
 """
 
-__author__ = 'smallbarbary@gmail.com (Yasser Albarbary)'
+__author__ = 'yasser.al-barbary@live.com (Yasser Albarbary)'
 
 
 from datetime import datetime
@@ -120,7 +120,7 @@ class ConferenceApi(remote.Service):
                     setattr(cf, field.name, str(getattr(conf, field.name)))
                 else:
                     setattr(cf, field.name, getattr(conf, field.name))
-            elif field.name == "websafeKey":
+            elif field.name == "websafeSessionKey":
                 setattr(cf, field.name, conf.key.urlsafe())
         if displayName:
             setattr(cf, 'organizerDisplayName', displayName)
@@ -141,7 +141,7 @@ class ConferenceApi(remote.Service):
 
         # copy ConferenceForm/ProtoRPC Message into dict
         data = {field.name: getattr(request, field.name) for field in request.all_fields()}
-        del data['websafeKey']
+        del data['websafeSessionKey']
         del data['organizerDisplayName']
 
         # add default values for those missing (both data model & outbound Message)
@@ -566,7 +566,7 @@ class ConferenceApi(remote.Service):
         )
 
 
-# - - - Sessons - - - - - - - - - - - - - - - - - - - -
+# - - -Task 1 Sessons - - - - - - - - - - - - - - - - - - - -
 
 
     @endpoints.method(message_types.VoidMessage, SessionForms,
@@ -638,7 +638,7 @@ class ConferenceApi(remote.Service):
 
         # Set the confrence as parent
         data['parent'] = ndb.Key(urlsafe=confKey)
-        del data['websafeKey']
+        del data['websafeSessionKey']
 
         # create Session & return (modified) SessionForm
         newSession = Session(**data).put()
@@ -647,7 +647,7 @@ class ConferenceApi(remote.Service):
         if len(data['speakerId']) > 0:
             for speaker in data['speakerId']:
                 taskqueue.add(params={'speakerId': speaker},
-                    url='/tasks/checktosetfeaturedspeaker'
+                    url='/tasks/check_to_set_featured_speaker'
                 )
 
         return self._copySessionToForm(newSession.get())
@@ -662,7 +662,7 @@ class ConferenceApi(remote.Service):
                     setattr(sf, field.name, str(getattr(sess, field.name)))
                 else:
                     setattr(sf, field.name, getattr(sess, field.name))
-        sf.websafeKey = sess.key.urlsafe()
+        sf.websafeSessionKey = sess.key.urlsafe()
         sf.check_initialized()
         return sf
 
@@ -765,11 +765,11 @@ class ConferenceApi(remote.Service):
 
         # copy SpeakerForm/ProtoRPC Message into dict
         data = {field.name: getattr(request, field.name) for field in request.all_fields()}
-        del data['websafeKey']
+        del data['websafeSessionKey']
 
         speakerKey = Speaker(**data).put()
-        # Add a websafeKey for Speaker to the SpakerForm before we return it
-        setattr(request, 'websafeKey', speakerKey.urlsafe())
+        # Add a websafeSessionKey for Speaker to the SpakerForm before we return it
+        setattr(request, 'websafeSessionKey', speakerKey.urlsafe())
         return request
 
     @endpoints.method(message_types.VoidMessage, StringMessage,

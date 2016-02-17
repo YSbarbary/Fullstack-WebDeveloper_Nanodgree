@@ -1,4 +1,4 @@
-#Conference Central (Modified)
+# Conference Central (Modified)
 
 App Engine application for the P4 Udacity training course.
 
@@ -40,10 +40,17 @@ Included are:
 1. Deploy your application.
 
 ## Modification/Additional Functionality Design Choices
-1. Speakers - Speakers were defined as new entity with minimal fields.  This
-allows for the possibility of extending this entity with more fields at a
-later time.  The only required field is displayName, the numeric ID of the
-Speaker is stored in Session, the creating user Profile is Speaker's ancestor.
+1. Speakers
+ - Option 1) Implemented this option.
+Speaker is a (string) property of session.
+If app business logic is not focusing on speakers 
+(we are not keeping other information about the speaker other than name), 
+faster implementation, faster read time for sessions and grabbing the speaker name. But duplicating speaker data (name).
+
+Option 2) NOT Implemented this option. 
+Speaker as a seperate entity. Use key (or keys) to associate with session. 
+Can store more information about speakers. A single update to a speaker is reflected to every related session,
+for example no need to iterate through every session object to fix a name typo for speaker.
 
 2. Session - Session is defined as a new entity with a conference and Profile
 as it's ancestor.  Sessions can contain multiple Speakers identified by their

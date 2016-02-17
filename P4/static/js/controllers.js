@@ -567,7 +567,7 @@ conferenceApp.controllers.controller('ConferenceDetailCtrl', function ($scope, $
                 if (resp.error) {
                     // The request has failed.
                     var errorMessage = resp.error.message || '';
-                    $scope.messages = 'Failed to get the conference : ' + $routeParams.websafeKey
+                    $scope.messages = 'Failed to get the conference : ' + $routeParams.websafeSessionKey
                         + ' ' + errorMessage;
                     $scope.alertStatus = 'warning';
                     $log.error($scope.messages);
@@ -669,7 +669,7 @@ conferenceApp.controllers.controller('ConferenceDetailCtrl', function ($scope, $
                         $log.info($scope.messages);
                     } else {
                         var errorMessage = resp.error.message || '';
-                        $scope.messages = 'Failed to unregister from the conference : ' + $routeParams.websafeKey +
+                        $scope.messages = 'Failed to unregister from the conference : ' + $routeParams.websafeSessionKey +
                             ' : ' + errorMessage;
                         $scope.messages = 'Failed to unregister from the conference';
                         $scope.alertStatus = 'warning';

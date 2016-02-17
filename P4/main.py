@@ -62,5 +62,5 @@ class CheckToSetFeaturedSpeaker(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/crons/set_announcement', SetAnnouncementHandler),
     ('/tasks/send_confirmation_email', SendConfirmationEmailHandler),
-    ('/tasks/checktosetfeaturedspeaker', CheckToSetFeaturedSpeaker),
+    ('/tasks/check_to_set_featured_speaker', CheckToSetFeaturedSpeaker),
 ], debug=True)

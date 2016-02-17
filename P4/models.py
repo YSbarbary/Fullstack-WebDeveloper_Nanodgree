@@ -8,7 +8,7 @@ $Id: models.py
 
 """
 
-__author__ = 'smallbarbary@gmail.com (Yasser Albarbary)'
+__author__ = 'yasser.al-barbary@live.com (Yasser Albarbary)'
 
 import httplib
 import endpoints
@@ -71,7 +71,7 @@ class ConferenceForm(messages.Message):
     maxAttendees    = messages.IntegerField(8)
     seatsAvailable  = messages.IntegerField(9)
     endDate         = messages.StringField(10) #DateTimeField()
-    websafeKey      = messages.StringField(11)
+    websafeSessionKey      = messages.StringField(11)
     organizerDisplayName = messages.StringField(12)
 
 class ConferenceForms(messages.Message):
@@ -125,7 +125,7 @@ class SessionForm(messages.Message):
     types           = messages.StringField(5, repeated=True)
     startDateTime   = messages.StringField(6) #DateTimeField()
     endDateTime     = messages.StringField(7) #DateTimeField()
-    websafeKey      = messages.StringField(8)
+    websafeSessionKey      = messages.StringField(8)
 
 class SessionForms(messages.Message):
     """SessionForms -- multiple Session outbound form message"""
@@ -142,7 +142,7 @@ class SpeakerForm(messages.Message):
     displayName     = messages.StringField(1, required=True)
     title           = messages.StringField(2)
     mainEmail       = messages.StringField(3)
-    websafeKey      = messages.StringField(4)
+    websafeSessionKey      = messages.StringField(4)
 
 class SpeakerMiniForm(messages.Message):
     """SpeakerForm -- Speaker outbound form message"""
