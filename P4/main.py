@@ -12,16 +12,21 @@ created by smallbarbary@gmail.com
 
 __author__ = 'smallbarbary@gmail.com (Yasser Albarbary)'
 
+#!/usr/bin/env python
+
+"""
+main.py -- Udacity conference server-side Python App Engine
+    HTTP controller handlers for memcache & task queue access
+$Id$
+created by wesc on 2014 may 24
+"""
+
+__author__ = 'wesc+api@google.com (Wesley Chun)'
+
 import webapp2
 from google.appengine.api import app_identity
 from google.appengine.api import mail
-from google.appengine.api import memcache
 from conference import ConferenceApi
-from models import Speaker
-from models import Session
-
-MEMCACHE_FEATURED_SPEAKER = "FEATURED SPEAKER"
-FEATURED_SPEAKER_TPL = ('Featured Speaker %s is presenting %s')
 
 class SetAnnouncementHandler(webapp2.RequestHandler):
     def get(self):
@@ -43,24 +48,16 @@ class SendConfirmationEmailHandler(webapp2.RequestHandler):
                 'conferenceInfo')
         )
 
-class CheckToSetFeaturedSpeaker(webapp2.RequestHandler):
+class SetFeaturedSpeakerHandler(webapp2.RequestHandler):
     def post(self):
-        """Check and Set as Featured Speaker if appropriate"""
-        speaker = self.request.get('speakerId')
-        # Gather all sessions by this speaker
-        fsessions = Session.query(Session.speakerId==str(speaker))\
-            .fetch(projection=[Session.name])
-        #If more than 1 session, then make featured speaker
-        if len(fsessions) > 1:
-            # Lookup Speaker
-            speaker = Speaker.get_by_id(int(speaker),)
-            # Set the featured speaker and sessions in memcache
-            announcement = FEATURED_SPEAKER_TPL % (speaker.displayName,
-                ', '.join(session.name for session in fsessions))
-            memcache.set(MEMCACHE_FEATURED_SPEAKER, announcement)
+        """Set speaker in Memcache."""
+        speaker = self.request.get('speaker')
+        ConferenceApi._cacheFeaturedSpeaker(speaker)
+        self.response.set_status(204)
+
 
 app = webapp2.WSGIApplication([
     ('/crons/set_announcement', SetAnnouncementHandler),
     ('/tasks/send_confirmation_email', SendConfirmationEmailHandler),
-    ('/tasks/check_to_set_featured_speaker', CheckToSetFeaturedSpeaker),
+    ('/tasks/set_featured_speaker', SetFeaturedSpeakerHandler),
 ], debug=True)
