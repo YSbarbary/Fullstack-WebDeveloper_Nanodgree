@@ -68,18 +68,8 @@ and the speaker in question will have two or more sessions.  NOTE: this method
 does not account for all situations, such as sessions in the past.
 
 5. Querys -Task  3 Implemented
-Let’s say that you don't like workshops and you don't like sessions after 7 pm.
- How would you handle a query for all non-workshop sessions before 7 pm?
-
-`Session.query(Session.typeOfSession != 'workshop', Session.startTime < '19:00')`
-What is the problem for implementing this query?
-
-	NDB Datastore API doesn't support using inequalities for multiple properties.
-What ways to solve it did you think of?
-
-	One way to solve this problem is to let datastore handle the first inequality and any additional inequalities should be implemented in python.
-
-6.Additional Queries
+`getLightningTalks`   - Get all the sessions that are between 5-20 mins longs
+6. Additional Queries
 `removeSessionFromWishlist()` - Removes the given session from user's wish list.
 
 `querySessions()` - Given a `SessionQueryForms`, returns a set of filtered sessions.
