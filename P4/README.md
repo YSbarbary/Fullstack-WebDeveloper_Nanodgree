@@ -71,16 +71,18 @@ does not account for all situations, such as sessions in the past.
 Let’s say that you don't like workshops and you don't like sessions after 7 pm.
  How would you handle a query for all non-workshop sessions before 7 pm?
 
-Session.query(Session.typeOfSession != 'workshop', Session.startTime < '19:00')
+`Session.query(Session.typeOfSession != 'workshop', Session.startTime < '19:00')`
 What is the problem for implementing this query?
 
-NDB Datastore API doesn't support using inequalities for multiple properties.
+	NDB Datastore API doesn't support using inequalities for multiple properties.
 What ways to solve it did you think of?
 
-6.Additional Queries
-removeSessionFromWishlist() - Removes the given session from user's wish list.
+	One way to solve this problem is to let datastore handle the first inequality and any additional inequalities should be implemented in python.
 
-querySessions() - Given a SessionQueryForms, returns a set of filtered sessions.
+6.Additional Queries
+`removeSessionFromWishlist()` - Removes the given session from user's wish list.
+
+`querySessions()` - Given a `SessionQueryForms`, returns a set of filtered sessions.
 
 The following filters are supported:
 
@@ -90,7 +92,7 @@ TYPE_OF_SESSION
 DATE
 START_TIME
 SPEAKER
-Both querySessions and queryConferences have been redone to support multiple inequality filters.
+Both `querySessions` and `queryConferences` have been redone to support multiple inequality filters.
 
 
 ##Attributions
