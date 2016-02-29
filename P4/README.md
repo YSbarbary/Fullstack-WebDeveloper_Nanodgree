@@ -67,20 +67,31 @@ registration is NOT required prior to use.
 and the speaker in question will have two or more sessions.  NOTE: this method
 does not account for all situations, such as sessions in the past.
 
-5. Querys - 3 Implemented
-  1. **_getNextFiveSessions()_** - Returns the next five sessions to start, useful for
-a day of event display.  Note this is not currently conference specific!
-  2. **_deleteOldSessions()_** - Deletes sessions that have ended to save space, a more ideal
-implementation might wait a period of time or instead archive them.  Designed to
-be run from CRONs in final implementation.
-  3. **non-workshop session before 7pm query problem** - Datastore only permits
-  inequalities on a single field
-per query, and by default this needs two (!=workshop >=19:00).  One possible
-solution is to break this into two datastore querys (not ideal for large data)
-in this case first filtering the session by time (only fetching the key and
-  type info), and then remove the keys of all with the undesired type, then
-  finally querying and returning the sessions from the remaining keys.  This is
-  implemented in *sessionfilterByTypeAndTime()*.
+5. Querys -Task  3 Implemented
+Let’s say that you don't like workshops and you don't like sessions after 7 pm.
+ How would you handle a query for all non-workshop sessions before 7 pm?
+
+Session.query(Session.typeOfSession != 'workshop', Session.startTime < '19:00')
+What is the problem for implementing this query?
+
+NDB Datastore API doesn't support using inequalities for multiple properties.
+What ways to solve it did you think of?
+
+6.Additional Queries
+removeSessionFromWishlist() - Removes the given session from user's wish list.
+
+querySessions() - Given a SessionQueryForms, returns a set of filtered sessions.
+
+The following filters are supported:
+
+NAME
+DURATION
+TYPE_OF_SESSION
+DATE
+START_TIME
+SPEAKER
+Both querySessions and queryConferences have been redone to support multiple inequality filters.
+
 
 ##Attributions
 This is based off the code provided by Udacity, and also examples from the
