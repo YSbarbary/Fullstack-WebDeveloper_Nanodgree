@@ -811,7 +811,7 @@ class ConferenceApi(remote.Service):
         
         #try gql:
         #https://cloud.google.com/appengine/docs/python/datastore/gqlreference
-        sessions = ndb.gql("SELECT * FROM Session WHERE type = Free" + 
+        sessions = ndb.gql("SELECT * FROM Session WHERE sessionType = Free" + 
             " ORDER BY name ASC").fetch()
 
         # return set of Sessions
