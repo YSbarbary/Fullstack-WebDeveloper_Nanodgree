@@ -68,7 +68,7 @@ and the speaker in question will have two or more sessions.  NOTE: this method
 does not account for all situations, such as sessions in the past.
 
 5. Querys -Task  3 Implemented
-`getLightningTalks`   - Get all the sessions that are between 5-20 mins longs
+`getFreeTalks`   - Get all the sessions that Have type Free
 6. Additional Queries
 `removeSessionFromWishlist()` - Removes the given session from user's wish list.
 

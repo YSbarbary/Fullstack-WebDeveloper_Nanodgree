@@ -798,21 +798,21 @@ class ConferenceApi(remote.Service):
         # return set of Sessions
         return SessionForms(items=[self._copySessionToForm(session) for session in sessions])
 
-    # Query-2
+        # Query-3
     @endpoints.method(message_types.VoidMessage,
                       SessionForms,
-                      path='sessions/lightning',
+                      path='sessions/freesessions',
                       http_method='GET',
-                      name='getLightningTalks')
-    def getLightningTalks(self, request):
-        """query for all the sessions that are between 5-20 mins long"""
+                      name='getFreeSessions')
+    def getFreeSessions(self, request):
+        """query for all the sessions that have type free """
         #queries that need index.yaml update:
         #https://cloud.google.com/appengine/docs/python/datastore/queries?csw=1#which_queries_need_indexes
         
         #try gql:
         #https://cloud.google.com/appengine/docs/python/datastore/gqlreference
-        sessions = ndb.gql("SELECT * FROM Session WHERE duration >= 5" + 
-            " AND duration <= 20 ORDER BY duration ASC, name ASC").fetch()
+        sessions = ndb.gql("SELECT * FROM Session WHERE type = Free" + 
+            " ORDER BY name ASC").fetch()
 
         # return set of Sessions
         return SessionForms(items=[self._copySessionToForm(session) for session in sessions])
