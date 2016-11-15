@@ -9,10 +9,10 @@ Description
 
 Files
 -----
-project.html the main page for the website
-/css/style.css the main style sheet
-/img folder for images
-/js folder for javascript files
+- project.html the main page for the website
+- /css/style.css the main style sheet
+- /img folder for images
+- /js folder for javascript files
 
 How to run
 -----------
