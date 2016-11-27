@@ -1,5 +1,5 @@
 # Udacity Full Stack: Linux Server Config
-This README contains instructions to set up a new Linux server instance to meet the requirements of Udacity Full Stack NanoDegree Project 5. 
+This README contains instructions to set up a new Linux server instance to deploy flask applications. 
 
 project url http://ec2-35-162-237-210.us-west-2.compute.amazonaws.com/
 
