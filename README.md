@@ -10,6 +10,8 @@ This repository contains project work for Udacity's [Full Stack Web Developer Na
 - **p3** - Item Catalog
 - **p4** - Conference Organization App
 - **p5** - Portfolio Website
+- **p6** - Linux Server Configuration
+
 
 ### Courses
 - Programming Foundations with Python
