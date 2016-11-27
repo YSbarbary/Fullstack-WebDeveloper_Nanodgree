@@ -9,10 +9,18 @@ Description
 
 Files
 -----
+<<<<<<< HEAD
 -project.html the main page for the website
 -/css/style.css the main style sheet
 -/img folder for images
 -/js folder for javascript files
+=======
+- project.html the main page for the website
+- /css/style.css the main style sheet
+- /css folder for css files
+- /img folder for images
+- /js folder for javascript files
+>>>>>>> origin/master
 
 How to run
 -----------
