@@ -39,6 +39,7 @@ Developed by "yasser al-barbary"
 2. Create new user "grader"
 
 		adduser grader
+		sudo passwd grader
 
 3. in /etc/sudoers.d add a file called "grader" 
 
@@ -48,6 +49,8 @@ Developed by "yasser al-barbary"
 type the line in the file "grader" to add sudo priviliges to user grader:
 
 		grader ALL=(ALL) NOPASSWD:ALL
+		
+		Without "NOPASSWD" in the config, the user is prompted for password whenever sudo is used. 
 	
 4. The instance is set to disallow password logins, and grader does not yet have a public key on the server, so the grader cannot yet log in. 
 	we must first generate public key to allow user grader to login
