@@ -9,9 +9,6 @@ Click here to be taken to
 (https://udacity-gg.appspot.com/).
 
 ## Setup:
-, and making sure
-that Python 2.7x is installed.  Then install and then initialize the
-Google Cloud SDK.
 
 - Begin the setup by cloning all files to the same directory
 
