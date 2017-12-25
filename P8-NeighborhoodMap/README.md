@@ -17,9 +17,9 @@ A single page application utilizing KnockoutJS and the Google Maps API.
 
 
 ## Sources:
-http://knockoutjs.com/documentation/introduction.html
-http://api.jquery.com/
-http://www.w3schools.com/
+* http://knockoutjs.com/documentation/introduction.html
+* http://api.jquery.com/
+* http://www.w3schools.com/
 
 ## Attributions:
 * [Google Maps API](https://developers.google.com/maps/)
