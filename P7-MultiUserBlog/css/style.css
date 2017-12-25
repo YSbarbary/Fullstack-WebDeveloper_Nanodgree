@@ -1,0 +1,30 @@
+a {
+  color:#fff;
+}
+
+a:focus, 
+a:hover {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+
+.panel-body {
+    background-color: #e2e7e7;
+}
+
+.navbar {
+  border-radius: 0;
+  margin-bottom: 0;
+  background:linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  color: #fff;
+  border: none;
+  opacity:0.95;
+}
+
+.content {
+  color: #220404f5;
+  margin: 0;
+  padding: 16px 0;
+  position: relative;
+  transition: background 0.5s ease 0s;
+}

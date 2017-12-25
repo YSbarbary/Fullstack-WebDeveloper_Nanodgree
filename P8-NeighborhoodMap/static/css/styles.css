@@ -1,0 +1,47 @@
+
+.map {
+  height: 100%;
+}
+input {
+  font-size: 12px;
+}
+
+h1 {
+  color: #525454;
+  font-size: 22px;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.map-box {
+  height: 100%;
+  left: 0%;
+  /*bottom:0px;*/
+
+  position: absolute;
+  right: 0%;
+}
+
+#pano {
+   width: 200px;
+   height: 200px;
+ }
+
+.row {
+  min-height: 100vh;
+}
+
+/* Creates a vertical nav starting at 768px (sm) */
+@media (min-width: 768px) {
+    .bootstrap-vertical-nav .collapse {
+        display: block;
+    }
+}
+
+.nav-item {
+  margin-bottom: : 10px;
+  margin-top: 10px;
+}
+
+.row {
+    background-color: beige;
