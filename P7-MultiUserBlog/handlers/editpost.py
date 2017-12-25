@@ -31,6 +31,7 @@ class EditPost(Handler):
         # otherwise if the user is not logged in take them to the login page
         else:
             self.redirect("/login")
+
     @user_logged_in
     @post_exists
     def post(self, blog_id):
@@ -71,4 +72,3 @@ class EditPost(Handler):
         # when the user clicks cancel take them to the post page
         elif self.request.get("cancel"):
             self.redirect('/post/%s' % str(post.key().id()))
-            

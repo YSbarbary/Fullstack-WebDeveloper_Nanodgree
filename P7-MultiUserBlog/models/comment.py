@@ -7,6 +7,7 @@ from blog import Blog
 
 # store comments to database
 
+
 class Comment(db.Model):
     post = db.ReferenceProperty(Blog, required=True)
     user = db.ReferenceProperty(User, required=True)

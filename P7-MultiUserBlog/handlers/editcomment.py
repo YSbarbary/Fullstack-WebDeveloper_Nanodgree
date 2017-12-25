@@ -12,8 +12,9 @@ import time
 
 # Define edit comment class-------------------------------------------------
 
+
 class EditComment(Handler):
-    @user_logged_in 
+    @user_logged_in
     def get(self, post_id, comment_id):
         # get the blog and comment from blog id and comment id
         post = Blog.get_by_id(int(post_id), parent=blog_key())
@@ -35,6 +36,7 @@ class EditComment(Handler):
         else:
             error = "This comment no longer exists"
             self.render("editcomment.html", edit_error=error)
+
     @user_logged_in
     def post(self, post_id, comment_id):
         # if the user clicks on update comment
@@ -61,4 +63,3 @@ class EditComment(Handler):
         # if the user clicks on cancel take the user to the post page
         elif self.request.get("cancel"):
             self.redirect('/post/%s' % str(post_id))
-            

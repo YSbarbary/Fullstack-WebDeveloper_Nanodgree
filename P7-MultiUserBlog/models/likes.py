@@ -25,4 +25,3 @@ class Like(db.Model):
             'post =', blog_id).filter(
             'user =', user_id)
         return cl.count()
-

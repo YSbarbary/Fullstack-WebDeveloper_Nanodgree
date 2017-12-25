@@ -24,4 +24,3 @@ class Blog(db.Model):
     def render(self):
         self._render_text = self.content.replace('\n', '<br>')
         return render_str("post.html", post=self)
-

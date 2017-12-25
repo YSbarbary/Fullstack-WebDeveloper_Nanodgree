@@ -18,10 +18,8 @@ JINJA_ENV = jinja2.Environment(
 
 secret = 'uhf?6e7J44;JY{'
 
+# Helping Functions definition
 
-
-
-# Helping Functions definition 
 
 def render_str(template, **params):
     t = JINJA_ENV.get_template(template)
@@ -92,9 +90,9 @@ PASS_RE = re.compile(r'^.{3,20}$')
 def valid_password(password):
     return password and USER_RE.match(password)
 
-
-
 # Decorators
+
+
 def post_exists(function):
     @wraps(function)
     def wrapper(self, post_id, *args, **kwargs):
@@ -105,8 +103,8 @@ def post_exists(function):
         else:
             return function(self, post_id, *args, **kwargs)
     return wrapper
-    
-    
+
+
 def user_logged_in(function):
     @wraps(function)
     def wrapper(self, *args, **kwargs):
@@ -115,6 +113,3 @@ def user_logged_in(function):
         else:
             return function(self, *args, **kwargs)
     return wrapper
-
-
-

@@ -27,4 +27,3 @@ class Register(Signup):
 
             self.login(u)
             self.redirect('/greeting')
-

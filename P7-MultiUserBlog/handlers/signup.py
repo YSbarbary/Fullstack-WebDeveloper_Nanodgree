@@ -2,10 +2,10 @@
 from handlers.bloghandler import Handler
 
 from helpers import *
+
+
 # Define sing-up class-------------------------------------------------
-
 class Signup(Handler):
-
     def get(self):
         self.render("signup.html")
 
@@ -40,7 +40,6 @@ class Signup(Handler):
         # entered values
         if have_error:
             self.render("signup.html", **params)
-
         else:
             self.done()
 

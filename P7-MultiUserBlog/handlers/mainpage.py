@@ -15,4 +15,3 @@ class MainPage(Handler):
         # if there are any existing blog posts render the page with those posts
         if blogs:
             self.render("blogs.html", blogs=blogs)
-

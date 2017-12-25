@@ -8,15 +8,14 @@ from helpers import *
 
 # Define greeting class -------------------------------
 
-class Greeting(Handler):
 
+class Greeting(Handler):
     def get(self):
         # check is the user is logged in
         if self.user:
-            # show the greeting message 
+            # show the greeting message
             self.render("greeting.html", username=self.user.name)
         # otherwise if the user is not logged in go to login from
         # page
         else:
             self.redirect("/login")
-            

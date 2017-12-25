@@ -2,9 +2,11 @@ from google.appengine.ext import db
 from helpers import *
 from user import User
 from blog import Blog
+
 # define unlike class-------------------------------------------------
 
-# store unlikes to datatbase
+
+
 class Unlike(db.Model):
     post = db.ReferenceProperty(Blog, required=True)
     user = db.ReferenceProperty(User, required=True)

@@ -40,6 +40,7 @@ class PostPage(Handler):
             unlikes=unlikes,
             comments_count=comments_count,
             post_comments=post_comments)
+
     @post_exists
     def post(self, blog_id):
         # get all the necessary parameters
@@ -57,9 +58,9 @@ class PostPage(Handler):
         if self.user:
             # if the user clicks on like
             if self.request.get("like"):
-                # first check if the user is trying to like his own post
-                if post.user.key().id() != User.by_name(self.user.name).key().id():
-                    # then check if the user has liked this post before
+                # check if the user try like his own post
+                if post.user.key().id() != User.by_name(self.user
+                                                            .name).key().id():
                     if previously_liked == 0:
                         # add like to the likes database and refresh the page
                         l = Like(
@@ -95,7 +96,8 @@ class PostPage(Handler):
             # if the user clicks on unlike
             if self.request.get("unlike"):
                 # first check if the user is trying to unlike his own post
-                if post.user.key().id() != User.by_name(self.user.name).key().id():
+                if post.user.key().id() != User.by_name(self.user
+                                                            .name).key().id():
                     # then check if the user has unliked this post before
                     if previously_unliked == 0:
                         # add unlike to the unlikes database and refresh the
@@ -145,7 +147,7 @@ class PostPage(Handler):
                 # otherwise if nothing has been entered in the text area throw
                 # an error
                 else:
-                    comment_error = "Please enter a comment in the text area to post"
+                    comment_error = "Please enter a comment in the text area"
                     self.render(
                         "post.html",
                         post=post,
@@ -157,7 +159,8 @@ class PostPage(Handler):
             # if the user clicks on edit post
             if self.request.get("edit"):
                 # check if the user is the author of this post
-                if post.user.key().id() == User.by_name(self.user.name).key().id():
+                if post.user.key().id() == User.by_name(self.user
+                                                            .name).key().id():
                     # take the user to edit post page
                     self.redirect('/edit/%s' % str(post.key().id()))
                 # otherwise if the user is not the author of this post throw an
@@ -175,7 +178,8 @@ class PostPage(Handler):
             # if the user clicks on delete
             if self.request.get("delete"):
                 # check if the user is the author of this post
-                if post.user.key().id() == User.by_name(self.user.name).key().id():
+                if post.user.key().id() == User.by_name(self.user
+                                                            .name).key().id():
                     # delete the post and redirect to the main page
                     db.delete(key)
                     time.sleep(0.1)
@@ -195,10 +199,3 @@ class PostPage(Handler):
         # otherwise if the user is not logged in take them to the login page
         else:
             self.redirect("/login")
-
-
-
-
-
-
-

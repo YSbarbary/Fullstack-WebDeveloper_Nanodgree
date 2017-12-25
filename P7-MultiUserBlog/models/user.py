@@ -30,7 +30,7 @@ class User(db.Model):
                     name=name,
                     pw_hash=pw_hash,
                     email=email)
-                    
+
     # checking the password before login
     @classmethod
     def login(cls, name, pw):

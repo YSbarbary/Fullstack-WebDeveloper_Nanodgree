@@ -7,6 +7,7 @@ from models.user import User
 from helpers import *
 # Define Handler class-------------------------------------------------
 
+
 class Handler(webapp2.RequestHandler):
 
     def write(self, *a, **kw):
