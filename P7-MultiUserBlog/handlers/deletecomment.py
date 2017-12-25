@@ -19,7 +19,7 @@ import time
 
 
 class DeleteComment(Handler):
-
+    @user_logged_in
     def get(self, post_id, comment_id):
         # get the comment from the comment id
         comment = Comment.get_by_id(int(comment_id))

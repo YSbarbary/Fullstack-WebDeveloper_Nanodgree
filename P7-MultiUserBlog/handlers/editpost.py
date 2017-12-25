@@ -12,7 +12,8 @@ import time
 
 
 class EditPost(Handler):
-
+    @user_logged_in
+    @post_exists
     def get(self, blog_id):
         key = db.Key.from_path("Blog", int(blog_id), parent=blog_key())
         post = db.get(key)
@@ -30,7 +31,8 @@ class EditPost(Handler):
         # otherwise if the user is not logged in take them to the login page
         else:
             self.redirect("/login")
-
+    @user_logged_in
+    @post_exists
     def post(self, blog_id):
         # get the key for this blog post
         key = db.Key.from_path("Blog", int(blog_id), parent=blog_key())
