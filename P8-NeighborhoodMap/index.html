@@ -13,49 +13,33 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-
-    <div class="row" >
-
-      <div class="col-sm-4 col-lg-3" >
-
-        <div class="bootstrap-vertical-nav">
-
-          <button class="btn btn-info hidden-md-up stad-list-menu" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <span class="">Menu</span>
-          </button>
-
-          <div class="collapse" id="collapseExample">
-            <ul class="nav flex-column" >
-
-              <li class="nav-item">
+    <div class="container">
+                <!--Display hamburger -->
+        <div class="menu">
+            <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+            </svg>
+        </div>
+      <div class="listview" data-bind="displayListView">
                 <h3 class="nav-header"> Egypt Feature Places </h3>
-              </li>
-              <li class="nav-item">
-                <div>
-                  <form class="form-inline">
+                <div class="search-box">
+                  <form >
                     <input class="search-input" placeholder="Search..." type="text" data-bind="value: query, valueUpdate: 'input'" >
                   </form>
-                </div>
-              </li>
-              <li class="nav-item">
                 <button type="button" class="btn btn-sm btn-block btw-info" data-bind="click: showAllListings" id="show-listings"  >Show Listings</button>
-              </li>
-              <li class="nav-item">
                 <button type="button" class="btn btn-sm btn-block btn-secondary" id="hide-listings" data-bind="click: hideAllListings" >Hide Listings</button>
-              </li>
-            </ul>
-
+                </div>
+          <div class="collapse" id="collapseExample">
             <ul class="nav flex-column" data-bind="template: {name: 'location', foreach: search}">
             </ul>
           </div>
-        </div>
+
       </div>
-      <div class="col-sm-8 col-lg-9 map-canvas">
+
+
         <div id="map" class="map-box">
         </div>
-      </div>
-    </div>
+
   </div>
 
   <!-- <script  src='./static/js/map.js'> </script> -->
@@ -84,6 +68,42 @@ google.maps.event.addDomListener(window, "resize", function() {
 });
 
 </script>
+  <script>
+    
+$(document).ready(function(){
+    //Implement off canvas menu
+    var menu = 'close';
+    $('#hamburger').on('click', function () {
+        function openMenu() {
+                    $('.listview').css('transform','translate(0,0)');
+                    $('#map').css('transform','translate(20%,0)');
+                    $('.menu').css('left','300px');
+                    menu = 'open';
+                }
+        function closeMenu () {
+                    $('.listview').css('transform','translate(-200%,0)');
+                    $('#map').css('transform','translate(0,0)');
+                    $('.menu').css('left','0px');
+                    menu = 'close';
+            }
+        if (menu == 'close') {
+            openMenu();
+        } else {
+            closeMenu();
+        }
+        //Close list view if clicked on map
+        $('#map').on('click', function () {
+            if (menu == 'open') {
+                closeMenu();
+            }
+        });
+
+        $('.listitem').on('click', function () {
+                closeMenu();
+        });
+    });
+});
+    </script>
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXzKwbOLMri-GIpmRW1_ZUXVZs5kn2efA&libraries=geometry&v=3&callback=initMap" onerror="googleError()"></script>
 </body>
