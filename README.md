@@ -2,7 +2,9 @@
 
 
 
-This repository contains project work for Udacity's [Full Stack Web Developer Nanodegree] Form oct 2015
+This repository contains project work for Udacity's [Full Stack Web Developer Nanodegree] 
+![alt text](nd004.jpg)
+
 
 ### Projects
 - **p1** - Movie Trailer Website
@@ -11,6 +13,8 @@ This repository contains project work for Udacity's [Full Stack Web Developer Na
 - **p4** - Conference Organization App
 - **p5** - Portfolio Website
 - **p6** - Linux Server Configuration
+- **p7** - MultiUserBlog
+- **p8** - NeighborhoodMap
 
 
 ### Courses
